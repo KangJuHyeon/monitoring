@@ -1,24 +1,37 @@
+const { ping } = require('../../models');
 const http = require('http');
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {    
+    try{
+        const URL = 'http://localhost:8888/ping?url=www.google.com&count=2'
 
-    const options = {
-        host: 'localhost',
-        port: 8888,
-        path: '/ping?url=www.google.com&count=4'
-      };
-      
-    const request = http.request(options, response => {
-        console.log(`statusCode:' ${res.statusCode}`);
+        http.get(URL, resp => {
+            resp.setEncoding('utf8');
+            var body = "";
+            
+            resp.on('data', data=> {
+                body += data;
+            });
+        
+            resp.on('end', ()=> {
+                body = JSON.parse(body);
 
-        response.on('data', (d) => {
-            process.stdout.write(d);
-        })
-
-    })
-        request.on('error', error => {
-            console.error(error)
-        })
-    request.end()
-    res.status(200).send({ message: "호출 성공" })
+                ping.create({
+                    region: body.region,
+                    ipaddr: body.ipaddr,
+                    addr:   body.addr,
+                    maxrtt: body.maxrtt,
+                    minrtt: body.minrtt,
+                    avgrtt: body.avgrtt,
+                    count: body.count
+                })
+                
+                console.log(body);
+                return res.status(200).json({ body, message: "데이터 받기 완료했습니다!" });
+            });
+        });
+    }catch(err){
+        console.log("err message:", err);
+        return res.status(500).send({ message: "실패!" })
+    }
 }

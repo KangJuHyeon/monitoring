@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   ping.init({
     region: DataTypes.STRING,
-    ipaddr: DataTypes.INTEGER,
+    ipaddr: DataTypes.STRING,
     addr: DataTypes.STRING,
     maxrtt: DataTypes.INTEGER,
     minrtt: DataTypes.INTEGER,

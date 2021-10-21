@@ -1,31 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Login from './components/Login';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: null,
-        };
-    }
-    componentDidMount() {
-        fetch('http://localhost:3000/api')
-            .then((res) => res.json())
-            .then((data) =>
-                this.setState({
-                    username: data.username,
-                }),
-            );
-    }
-    render() {
-        const { username } = this.state;
-        return (
+function App() {
+    return (
+        <BrowserRouter>
             <div className="App">
-                <header className="App-header">
-                    {username ? `Hello ${username}` : 'Hell World'}
-                </header>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/dashboard" component={Dashboard} />
             </div>
-        );
-    }
+        </BrowserRouter>
+    );
 }
-
 export default App;

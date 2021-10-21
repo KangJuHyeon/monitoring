@@ -8,20 +8,19 @@ const morgan = require('morgan');
 const db = require('../models');
 
 db.sequelize
-  .sync()
-  .then(() => {
-    console.log('데이터베이스 연결 성공');
-  })
-  .catch(console.error);
+    .sync()
+    .then(() => {
+        console.log('데이터베이스 연결 성공');
+    })
+    .catch(console.error);
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
-app.use('/api', (req, res) => res.json({ username: 'bryan' }));
-// app.get('/', (req, res) => {
-//     res.send('Hey JuHyun');
-// });
+app.get('/', (req, res) => {
+    res.send('Hey JuHyun');
+});
 
 const userRouter = require('../routes/user');
 const pingRouter = require('../routes/ping');
@@ -30,5 +29,5 @@ app.use('/users', userRouter);
 app.use('/pings', pingRouter);
 
 app.listen(port, () => {
-  console.log(`express is running on ${port}`);
+    console.log(`express is running on ${port}`);
 });

@@ -1,88 +1,129 @@
-import React, { useState, useEffect } from 'react';
+import '../scss/Login.scss';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setIsLogin, setUserInfo } from '../actions/index';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 function Login() {
-    const [inputId, setInputId] = useState('');
-    const [inputPw, setInputPw] = useState('');
+    const [nickname, setInputNick] = useState('');
+    const [password, setInputPw] = useState('');
+    const [retrypassword, setPasswordCheck] = useState('');
+    const [passwordError, setPasswordError] = useState(false);
 
-    const handleInputId = (e) => {
-        setInputId(e.target.value);
+    const dispatch = useDispatch();
+
+    const onChangeNick = (e) => {
+        setInputNick(e.target.value);
     };
 
-    const handleInputPw = (e) => {
+    const onChangePassword = (e) => {
         setInputPw(e.target.value);
     };
 
-    const onClickLogin = (data) => {
+    const onChangePasswordCheck = (e) => {
+        setPasswordError(e.target.value !== password);
+        setPasswordCheck(e.target.value);
+    };
+
+    const onSubmit = (data) => {
+        data.preventDefault();
+
+        if (password !== retrypassword) {
+            return setPasswordError(true);
+        }
+
         axios
             .post(
-                `${process.env.PORT}/users/login`,
+                'http://localhost:3000/users/login',
                 {
-                    nickname: data.nickname,
-                    password: data.password,
-                    retrypassword: data.retrypassword,
+                    nickname,
+                    password,
+                    retrypassword,
                 },
                 {
                     'Content-Type': 'application/json',
                 },
             )
             .then(function (res) {
-                console.log(res);
+                dispatch(setIsLogin(true));
+                dispatch(setUserInfo(res.data.user));
+                console.log({
+                    nickname,
+                    password,
+                    retrypassword,
+                    passwordError,
+                });
+                console.log('회원가입이 완료되었습니다.');
+                document.location.href = '/dashboard';
             })
             .catch((error) => {
                 console.log(error);
             });
     };
 
-    useEffect(() => {
-        axios
-            .get(`${process.env.PORT}/users/login`)
-            .then((res) => console.log(res))
-            .catch();
-    }, []);
-
     return (
-        <div className="Login">
-            <div className="form">
-                <form>
-                    <div className="form-floating">
-                        <input
-                            id="floatingInput"
-                            type="text"
-                            value={inputId}
-                            onChange={handleInputId}
-                            className="form-control"
-                        />
-                        <label>이름</label>
-                    </div>
-                    <div className="form-floating">
-                        <input
-                            id="floatingPassword"
-                            type="password"
-                            value={inputPw}
-                            onChange={handleInputPw}
-                            className="form-control"
-                        />
-                        <label>비밀번호</label>
-                    </div>
-                    <div className="form-floating">
-                        <input
-                            id="repeat"
-                            type="password"
-                            className="form-control"
-                        />
-                        <label>비밀번호 재입력</label>
-                    </div>
-                    <button
-                        className="btn"
-                        type="submit"
-                        onClick={onClickLogin}
+        <div className="login-box">
+            <form className="form" onSubmit={onSubmit}>
+                <div>
+                    <object
+                        width="64"
+                        height="64"
+                        data="/angry-bird-icon.png"
+                    ></object>
+                    <div
+                        style={{
+                            fontSize: '28px',
+                            fontWeight: 'bold',
+                            marginTop: '5px',
+                        }}
                     >
-                        생성하기
-                    </button>
-                </form>
-            </div>
+                        Uptime Kuma
+                    </div>
+                </div>
+                <p>관리자 계정 만들기</p>
+                <div className="form-floating">
+                    <input
+                        id="floatingInput"
+                        type="text"
+                        placeholder="이름"
+                        value={nickname}
+                        onChange={onChangeNick}
+                        className="form-control"
+                    />
+                    {/* <label className="floatingId">이름</label> */}
+                </div>
+                <div className="form-floating-m1x">
+                    <input
+                        id="floatingPassword"
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={onChangePassword}
+                        className="form-control"
+                    />
+                    {/* <label className="floatingpwd">비밀번호</label> */}
+                </div>
+                <div className="form-floating-m1x">
+                    <input
+                        id="repeat"
+                        type="password"
+                        placeholder="비밀번호 재입력"
+                        value={retrypassword}
+                        onChange={onChangePasswordCheck}
+                        className="form-control"
+                    />
+                    {passwordError && (
+                        <div style={{ color: 'red' }}>
+                            비밀번호가 일치하지 않습니다.
+                        </div>
+                    )}
+                    {/* <label className="retryPassword">비밀번호 재입력</label> */}
+                </div>
+                <button className="login-btn" type="submit">
+                    생성하기
+                </button>
+            </form>
         </div>
     );
 }

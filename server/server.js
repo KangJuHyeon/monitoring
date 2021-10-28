@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('Hey JuHyun');
+    res.send('Hello Ju');
 });
 
 const userRouter = require('../routes/user');

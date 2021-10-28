@@ -3,6 +3,10 @@ const { user } = require('../../models');
 module.exports = async (req, res) => {
     const { nickname, password, retrypassword } = req.body;
 
+    if (!nickname || !password || !retrypassword) {
+        return res.status(400).end();
+    }
+
     try {
         const userInfo = await user.create({
             nickname,

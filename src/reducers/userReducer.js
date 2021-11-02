@@ -5,7 +5,7 @@ const itemReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_IS_LOGIN:
             return Object.assign({}, state, {
-                isLogin: action.payload.isLogin,
+                isLogin: action.payload,
             });
 
         case SET_USERINFO:
@@ -17,4 +17,5 @@ const itemReducer = (state = initialState, action) => {
             return state;
     }
 };
+
 export default itemReducer;

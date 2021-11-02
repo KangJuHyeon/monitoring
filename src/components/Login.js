@@ -48,14 +48,12 @@ function Login() {
             .then(function (res) {
                 dispatch(setIsLogin(true));
                 dispatch(setUserInfo(res.data.user));
-                console.log({
-                    nickname,
-                    password,
-                    retrypassword,
-                    passwordError,
-                });
-                console.log('회원가입이 완료되었습니다.');
-                document.location.href = '/dashboard';
+                if (!setIsLogin) {
+                    alert('다시 가입해주세요.');
+                } else {
+                    alert('가입을 성공적으로 완료했습니다.');
+                    document.location.href = '/dashboard';
+                }
             })
             .catch((error) => {
                 console.log(error);

@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const session = require('express-session');
 const dotenv = require('dotenv');
-require('dotenv').config();
+dotenv.config();
 const port = process.env.PORT;
 const morgan = require('morgan');
 const db = require('../models');
@@ -14,8 +15,25 @@ db.sequelize
     })
     .catch(console.error);
 
+app.use(
+    session({
+        secret: 'helloworld',
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            domain: 'localhost',
+            path: '/',
+            maxAge: 24 * 6 * 60 * 10000,
+            sameSite: 'none',
+            httpOnly: true,
+            secure: true,
+        },
+    }),
+);
+
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.get('/', (req, res) => {

@@ -87,7 +87,6 @@ function Login() {
                         placeholder="이름"
                         value={nickname}
                         onChange={onChangeNick}
-                        className="form-control"
                     />
                     {/* <label className="floatingId">이름</label> */}
                 </div>
@@ -98,7 +97,6 @@ function Login() {
                         placeholder="비밀번호"
                         value={password}
                         onChange={onChangePassword}
-                        className="form-control"
                     />
                     {/* <label className="floatingpwd">비밀번호</label> */}
                 </div>
@@ -109,7 +107,6 @@ function Login() {
                         placeholder="비밀번호 재입력"
                         value={retrypassword}
                         onChange={onChangePasswordCheck}
-                        className="form-control"
                     />
                     {passwordError && (
                         <div style={{ color: 'red' }}>

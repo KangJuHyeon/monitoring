@@ -34,11 +34,11 @@ function main() {
                                     ></input>
                                 </div>
                             </div>
-                        </div>
-                        <div className="monitor-list">
-                            <div className="text-center">
-                                {'모니터링이 없어요.'}
-                                <a href="/add">{'하나 추가해봐요'}</a>
+                            <div className="monitor-list">
+                                <div className="text-center">
+                                    {'모니터링이 없어요.'}
+                                    <a href="/add">{'하나 추가해봐요'}</a>
+                                </div>
                             </div>
                         </div>
                     </div>

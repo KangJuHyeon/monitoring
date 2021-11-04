@@ -1,16 +1,13 @@
 import '../scss/Login.scss';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { setIsLogin, setUserInfo } from '../actions/index';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function Login() {
     const [nickname, setInputNick] = useState('');
     const [password, setInputPw] = useState('');
-    const [retrypassword, setPasswordCheck] = useState('');
-    const [passwordError, setPasswordError] = useState(false);
-
     const dispatch = useDispatch();
 
     const onChangeNick = (e) => {
@@ -21,17 +18,8 @@ function Login() {
         setInputPw(e.target.value);
     };
 
-    const onChangePasswordCheck = (e) => {
-        setPasswordError(e.target.value !== password);
-        setPasswordCheck(e.target.value);
-    };
-
     const onSubmit = (data) => {
         data.preventDefault();
-
-        if (password !== retrypassword) {
-            return setPasswordError(true);
-        }
 
         axios
             .post(
@@ -39,87 +27,67 @@ function Login() {
                 {
                     nickname,
                     password,
-                    retrypassword,
                 },
                 {
                     'Content-Type': 'application/json',
                 },
             )
             .then(function (res) {
+                console.log(res);
                 dispatch(setIsLogin(true));
                 dispatch(setUserInfo(res.data.user));
-                if (!setIsLogin) {
-                    alert('다시 가입해주세요.');
-                } else {
-                    alert('가입을 성공적으로 완료했습니다.');
-                    document.location.href = '/dashboard';
-                }
+                alert('로그인 성공 !!!');
+                document.location.href = '/dashboard';
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
             });
     };
 
     return (
-        <div className="login-box">
-            <form className="form" onSubmit={onSubmit}>
-                <div>
-                    <object
-                        width="64"
-                        height="64"
-                        data="/angry-bird-icon.png"
-                    ></object>
-                    <div
-                        style={{
-                            fontSize: '28px',
-                            fontWeight: 'bold',
-                            marginTop: '5px',
-                        }}
-                    >
-                        Uptime Kuma
-                    </div>
-                </div>
-                <p>관리자 계정 만들기</p>
-                <div className="form-floating">
-                    <input
-                        id="floatingInput"
-                        type="text"
-                        placeholder="이름"
-                        value={nickname}
-                        onChange={onChangeNick}
-                    />
-                    {/* <label className="floatingId">이름</label> */}
-                </div>
-                <div className="form-floating-m1x">
-                    <input
-                        id="floatingPassword"
-                        type="password"
-                        placeholder="비밀번호"
-                        value={password}
-                        onChange={onChangePassword}
-                    />
-                    {/* <label className="floatingpwd">비밀번호</label> */}
-                </div>
-                <div className="form-floating-m1x">
-                    <input
-                        id="repeat"
-                        type="password"
-                        placeholder="비밀번호 재입력"
-                        value={retrypassword}
-                        onChange={onChangePasswordCheck}
-                    />
-                    {passwordError && (
-                        <div style={{ color: 'red' }}>
-                            비밀번호가 일치하지 않습니다.
+        <main className="main-form">
+            <div className="form-container">
+                <div className="form-mb">
+                    <form onSubmit={onSubmit}>
+                        <h1 className="h3-mb-3-normal"></h1>
+                        <div className="form-floating-mb-3">
+                            <input
+                                id="floatingInput"
+                                type="text"
+                                placeholder="이름"
+                                value={nickname}
+                                onChange={onChangeNick}
+                            ></input>
                         </div>
-                    )}
-                    {/* <label className="retryPassword">비밀번호 재입력</label> */}
+                        <div className="form-floating-mt-3">
+                            <input
+                                id="floatingPassword"
+                                type="password"
+                                placeholder="비밀번호"
+                                value={password}
+                                onChange={onChangePassword}
+                            ></input>
+                        </div>
+                        <div className="form-check-mb-3">
+                            <div className="form-check">
+                                <input
+                                    id="remember"
+                                    type="checkbox"
+                                    value="remember-me"
+                                ></input>
+                                <label className="form-check-label">
+                                    {'비밀번호 기억하기'}
+                                </label>
+                            </div>
+                        </div>
+                        <button className="btn-primary" type="submit">
+                            로그인
+                        </button>
+                    </form>
                 </div>
-                <button className="login-btn" type="submit">
-                    생성하기
-                </button>
-            </form>
-        </div>
+            </div>
+        </main>
     );
 }
+
 export default withRouter(Login);

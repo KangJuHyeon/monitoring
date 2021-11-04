@@ -1,6 +1,19 @@
 @import 'color';
 
-.main-form {
+.form {
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    height: 507px;
+    line-height: 24px;
+    margin-top: 0px;
+    text-align: center;
+    text-size-adjust: 100%;
+    width: 300px;
+}
+
+.signup-box {
     padding: 3rem;
     margin-bottom: 1.5rem;
     display: flex;
@@ -8,67 +21,7 @@
     align-items: center;
 }
 
-.form-container {
-    align-items: center;
-    box-sizing: border-box;
-    color: rgb(33, 37, 41);
-    display: flex;
-    font-size: 16px;
-    font-weight: 400;
-    height: 354px;
-    line-height: 24px;
-    padding-bottom: 40px;
-    padding-top: 40px;
-    text-align: start;
-    text-size-adjust: 100%;
-    width: 887px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.form-mb {
-    box-sizing: border-box;
-    color: rgb(33, 37, 41);
-    display: block;
-    font-size: 16px;
-    font-weight: 400;
-    height: 274px;
-    line-height: 24px;
-    margin-bottom: 0px;
-    margin-left: 278.5px;
-    margin-right: 278.5px;
-    margin-top: 0px;
-    max-width: 330px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 15px;
-    text-align: center;
-    text-size-adjust: 100%;
-    width: 330px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.h3-mb-3-normal {
-    box-sizing: border-box;
-    color: rgb(33, 37, 41);
-    display: block;
-    font-size: 26.122px;
-    font-weight: 400;
-    height: 0px;
-    line-height: 31.3464px;
-    margin-block-end: 16px;
-    margin-block-start: 0px;
-    margin-bottom: 16px;
-    margin-inline-end: 0px;
-    margin-inline-start: 0px;
-    margin-top: 0px;
-    text-align: center;
-    text-size-adjust: 100%;
-    width: 300px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.form-floating-mb-3 {
+.form-floating {
     box-sizing: border-box;
     color: rgb(33, 37, 41);
     display: block;
@@ -145,7 +98,7 @@
     }
 }
 
-.form-floating-mt-3 {
+.form-floating-m1x {
     box-sizing: border-box;
     color: rgb(33, 37, 41);
     display: block;
@@ -224,112 +177,141 @@
         -webkit-text-security: disc;
     }
 }
-
-.form-check-mb-3 {
+.floatingId {
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgba(0, 0, 0, 0);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1px;
     box-sizing: border-box;
     color: rgb(33, 37, 41);
-    display: flex;
+    cursor: default;
+    display: block;
     font-size: 16px;
     font-weight: 400;
-    height: 26px;
-    justify-content: center;
+    height: 100%;
+    left: 0px;
     line-height: 24px;
-    margin-bottom: 16px;
-    margin-top: 16px;
-    min-height: 24px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-bottom: 16px;
+    padding-left: 20.8px;
+    padding-right: 12px;
+    padding-top: 16px;
+    pointer-events: none;
+    position: absolute;
     text-align: center;
     text-size-adjust: 100%;
-    width: 300px;
+    top: 0px;
+    transform-origin: 0px 0px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.1s, 0.1s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out, ease-in-out;
+    width: auto;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.form-check {
+.floatingpwd {
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgba(0, 0, 0, 0);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1px;
     box-sizing: border-box;
     color: rgb(33, 37, 41);
     display: block;
     font-size: 16px;
     font-weight: 400;
-    height: 24px;
+    height: 100%;
+    left: 0px;
     line-height: 24px;
-    margin-bottom: 2px;
-    min-height: 24px;
-    padding-left: 24px;
+    padding-bottom: 16px;
+    padding-left: 20.8px;
+    padding-right: 12px;
+    padding-top: 16px;
+    pointer-events: none;
+    position: absolute;
     text-align: center;
     text-size-adjust: 100%;
-    width: 138.922px;
+    top: 0px;
+    transform-origin: 0px 0px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.1s, 0.1s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out, ease-in-out;
+    width: auto;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    input {
-        appearance: none;
-        background-color: rgb(92, 221, 139);
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
-        background-position-x: 50%;
-        background-position-y: 50%;
-        background-size: contain;
-        border-bottom-color: rgb(92, 221, 139);
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
-        border-image-outset: 0;
-        border-image-repeat: stretch;
-        border-image-slice: 100%;
-        border-image-source: none;
-        border-image-width: 1;
-        border-left-color: rgb(92, 221, 139);
-        border-left-style: solid;
-        border-left-width: 1px;
-        border-right-color: rgb(92, 221, 139);
-        border-right-style: solid;
-        border-right-width: 1px;
-        border-top-color: rgb(92, 221, 139);
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        border-top-style: solid;
-        border-top-width: 1px;
-        box-sizing: border-box;
-        color: rgb(0, 0, 0);
-        display: block;
-        float: left;
-        font-size: 16px;
-        font-stretch: 100%;
-        font-style: normal;
-        font-variant-caps: normal;
-        font-variant-east-asian: normal;
-        font-variant-ligatures: normal;
-        font-variant-numeric: normal;
-        font-weight: 400;
-        height: 16px;
-        letter-spacing: normal;
-        line-height: 24px;
-        margin-bottom: 0px;
-        margin-left: -24px;
-        margin-right: 0px;
-        margin-top: 4px;
-        padding-bottom: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 0px;
-        text-align: start;
-        text-indent: 0px;
-        text-rendering: auto;
-        text-shadow: none;
-        text-size-adjust: 100%;
-        text-transform: none;
-        vertical-align: top;
-        width: 16px;
-        word-spacing: 0px;
-        writing-mode: horizontal-tb;
-        -webkit-rtl-ordering: logical;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        -webkit-border-image: none;
-    }
+}
+.retryPassword {
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgba(0, 0, 0, 0);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgba(0, 0, 0, 0);
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-sizing: border-box;
+    color: rgb(33, 37, 41);
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    height: 100%;
+    left: 0px;
+    line-height: 24px;
+    padding-bottom: 16px;
+    padding-left: 20.8px;
+    padding-right: 12px;
+    padding-top: 16px;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    text-size-adjust: 100%;
+    top: 0px;
+    transform-origin: 0px 0px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.1s, 0.1s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out, ease-in-out;
+    width: auto;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.btn-primary {
+// 버튼
+.signup-btn {
     align-items: flex-start;
-    appearance: button;
     background-color: rgb(92, 221, 139);
     border-bottom-color: rgb(92, 221, 139);
     border-bottom-left-radius: 800px;
@@ -369,7 +351,7 @@
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 0px;
+    margin-top: 16px;
     padding-bottom: 6px;
     padding-left: 20px;
     padding-right: 20px;
@@ -378,7 +360,6 @@
     text-decoration-color: rgb(255, 255, 255);
     text-decoration-line: none;
     text-decoration-style: solid;
-    text-decoration-thickness: auto;
     text-indent: 0px;
     text-rendering: auto;
     text-shadow: none;
@@ -387,8 +368,6 @@
     transition-delay: 0s, 0s, 0s, 0s;
     transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
     transition-property: color, background-color, border-color, box-shadow;
-    transition-timing-function: ease-in-out, ease-in-out, ease-in-out,
-        ease-in-out;
     user-select: none;
     vertical-align: middle;
     width: 300px;

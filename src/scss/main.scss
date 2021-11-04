@@ -1,5 +1,13 @@
 @import 'color';
 
+.main-form {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
 .container-fluid {
     box-sizing: border-box;
     color: rgb(33, 37, 41);

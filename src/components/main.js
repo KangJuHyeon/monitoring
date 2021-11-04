@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 function main() {
     return (
-        <main>
+        <main className="main-form">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12-left">

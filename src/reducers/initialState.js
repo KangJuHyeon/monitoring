@@ -3,7 +3,5 @@ export const initialState = {
     userinfo: {
         id: '',
         nickname: '',
-        password: '',
-        retrypassword: '',
     },
 };

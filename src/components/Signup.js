@@ -1,16 +1,13 @@
 import '../scss/Signup.scss';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-function Signup() {
+function Signup({ history }) {
     const [nickname, setInputNick] = useState('');
     const [password, setInputPw] = useState('');
     const [retrypassword, setPasswordCheck] = useState('');
     const [passwordError, setPasswordError] = useState(false);
-
-    const dispatch = useDispatch();
 
     const onChangeNick = (e) => {
         setInputNick(e.target.value);
@@ -47,7 +44,7 @@ function Signup() {
             )
             .then(function () {
                 alert('회원가입을 성공적으로 완료했습니다.');
-                document.location.href = '/login';
+                history.push('/login');
             })
             .catch((error) => {
                 console.error(error);
@@ -112,6 +109,11 @@ function Signup() {
                 <button className="signup-btn" type="submit">
                     생성하기
                 </button>
+                <div className="login-select-area">
+                    <label>You have an account?</label>
+
+                    <span onClick={() => history.push('/login')}>Login</span>
+                </div>
             </form>
         </div>
     );

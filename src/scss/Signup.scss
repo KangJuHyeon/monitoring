@@ -376,3 +376,14 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-border-image: none;
 }
+
+.login-select-area {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    span {
+        cursor: pointer;
+        margin-left: 0.5rem;
+        font-weight: 500;
+        color: $color-main-middle;
+    }
+}

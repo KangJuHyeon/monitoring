@@ -5,7 +5,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-function Login() {
+function Login({ history }) {
     const [nickname, setInputNick] = useState('');
     const [password, setInputPw] = useState('');
     const dispatch = useDispatch();
@@ -33,11 +33,11 @@ function Login() {
                 },
             )
             .then(function (res) {
-                console.log(res);
+                localStorage.setItem('cookie', res.data.session);
                 dispatch(setIsLogin(true));
                 dispatch(setUserInfo(res.data.user));
                 alert('로그인 성공 !!!');
-                document.location.href = '/dashboard';
+                history.push('/dashboard');
             })
             .catch((error) => {
                 console.error(error);
@@ -76,13 +76,20 @@ function Login() {
                                     value="remember-me"
                                 ></input>
                                 <label className="form-check-label">
-                                    {'비밀번호 기억하기'}
+                                    비밀번호 기억하기
                                 </label>
                             </div>
                         </div>
                         <button className="btn-primary" type="submit">
                             로그인
                         </button>
+                        <div className="signup-select-area">
+                            <label>Don't have an account?</label>
+
+                            <span onClick={() => history.push('/')}>
+                                Signup
+                            </span>
+                        </div>
                     </form>
                 </div>
             </div>

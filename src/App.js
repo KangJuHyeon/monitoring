@@ -1,21 +1,36 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Nav from './components/Nav';
-import main from './components/main';
+import Dashboard from './pages/Dashboard';
 
 function App() {
+    const loginInfo = useSelector((state) => state.userReducer);
+    const { isLogin, userInfo } = loginInfo;
+
     return (
         <BrowserRouter>
             <div className="App">
                 <Switch>
                     <Route exact path="/" component={Signup} />
                     <Route exact path="/login" component={Login} />
-                    <div>
-                        <Nav />
-                        <Route exact path="/dashboard" component={main} />
-                    </div>
+                    <React.Fragment>
+                        <div>
+                            <Nav isLogin={isLogin} />
+                            <Route
+                                exact
+                                path="/dashboard"
+                                render={() => (
+                                    <Dashboard
+                                        isLogin={isLogin}
+                                        userInfo={userInfo}
+                                    />
+                                )}
+                            />
+                        </div>
+                    </React.Fragment>
                 </Switch>
             </div>
         </BrowserRouter>

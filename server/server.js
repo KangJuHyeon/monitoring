@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PORT;
@@ -15,6 +16,7 @@ db.sequelize
     })
     .catch(console.error);
 
+app.use(cookieParser());
 app.use(
     session({
         secret: 'helloworld',
@@ -25,7 +27,7 @@ app.use(
             path: '/',
             maxAge: 24 * 6 * 60 * 10000,
             sameSite: 'none',
-            httpOnly: true,
+            // httpOnly: true,
             secure: true,
         },
     }),

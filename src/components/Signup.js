@@ -79,7 +79,6 @@ function Signup({ history }) {
                         value={nickname}
                         onChange={onChangeNick}
                     />
-                    {/* <label className="floatingId">이름</label> */}
                 </div>
                 <div className="form-floating-m1x">
                     <input
@@ -89,7 +88,6 @@ function Signup({ history }) {
                         value={password}
                         onChange={onChangePassword}
                     />
-                    {/* <label className="floatingpwd">비밀번호</label> */}
                 </div>
                 <div className="form-floating-m1x">
                     <input
@@ -100,11 +98,14 @@ function Signup({ history }) {
                         onChange={onChangePasswordCheck}
                     />
                     {passwordError && (
-                        <div style={{ color: 'red' }}>
+                        <i style={{ color: 'purple' }} className="fas fa-times">
+                            {' '}
                             비밀번호가 일치하지 않습니다.
-                        </div>
+                        </i>
+                        // <div style={{ color: 'red' }}>
+                        //     비밀번호가 일치하지 않습니다.
+                        // </div>
                     )}
-                    {/* <label className="retryPassword">비밀번호 재입력</label> */}
                 </div>
                 <button className="signup-btn" type="submit">
                     생성하기

@@ -1,4 +1,5 @@
 const { user } = require('../../models');
+const { hashPassword } = require('../../utils/utils');
 
 module.exports = async (req, res) => {
     const { nickname, password, retrypassword } = req.body;
@@ -9,9 +10,10 @@ module.exports = async (req, res) => {
     // 회원 가입 Validation은 나중에 만들어 주도록 하자.(일단 pass)
 
     try {
+        const hashedPassword = hashPassword(password);
         const userInfo = await user.create({
             nickname,
-            password,
+            password: hashedPassword,
         });
         res.status(200).send({
             userInfo,

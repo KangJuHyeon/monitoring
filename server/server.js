@@ -19,16 +19,13 @@ db.sequelize
 app.use(cookieParser());
 app.use(
     session({
-        secret: 'helloworld',
+        secret: process.env.SECRET,
         resave: false,
         saveUninitialized: true,
         cookie: {
-            domain: 'localhost',
+            domain: process.env.DOMAIN,
             path: '/',
-            maxAge: 24 * 6 * 60 * 10000,
-            sameSite: 'none',
-            // httpOnly: true,
-            secure: true,
+            // secure: true,
         },
     }),
 );

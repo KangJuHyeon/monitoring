@@ -1,4 +1,6 @@
 const { user } = require('../../models');
+const { comparePassword } = require('../../utils/utils');
+require('dotenv').config();
 
 module.exports = async (req, res) => {
     const { nickname, password } = req.body;
@@ -7,15 +9,20 @@ module.exports = async (req, res) => {
     try {
         const userInfo = await user.findOne({
             where: {
-                nickname: nickname,
-                password: password,
+                nickname,
             },
         });
-
-        if (!userInfo) {
+        console.log(userInfo);
+        if (userInfo === null) {
             return res.status(403).send({
                 message: '회원정보가 없습니다. 회원가입을 먼저 진행해주세요.',
             });
+        }
+
+        const result = comparePassword(password, userInfo.password);
+
+        if (!result) {
+            return res.status(401).send({ message: 'Invalid password' });
         }
 
         const payload = {
@@ -25,22 +32,17 @@ module.exports = async (req, res) => {
 
         session.sessionID = userInfo.id;
 
-        res.cookie('cookie', session.sessionID, {
-            domain: 'localhost',
+        res.cookie('Authorization', session.sessionID, {
+            domain: process.env.DOMAIN,
             path: '/',
-            maxAge: 24 * 6 * 60 * 1000,
-            sameSite: 'none',
-            secure: true,
+            maxAge: 60 * 60,
+            // secure: true,
         });
+        console.log(req.cookies);
 
-        if (req.session.sessionID) {
-            console.log(req.session.sessionID, '가 접속했습니다.');
-        } else {
-            console.log('잘못된 유저입니다.');
-        }
         res.status(200).send({
             session: session.sessionID,
-            user: payload,
+            userInfo: payload,
             message: '성공적으로 로그인이 되었습니다.',
         });
     } catch (error) {

@@ -33,7 +33,7 @@ function Login({ history }) {
                 },
             )
             .then(function (res) {
-                localStorage.setItem('cookie', res.data.session);
+                localStorage.setItem('Authorization', res.data.session);
                 dispatch(setIsLogin(true));
                 dispatch(setUserInfo(res.data.user));
                 alert('로그인 성공 !!!');

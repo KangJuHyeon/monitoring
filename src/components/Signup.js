@@ -42,11 +42,16 @@ function Signup({ history }) {
                     'Content-Type': 'application/json',
                 },
             )
-            .then(function () {
+            .then(() => {
                 alert('회원가입을 성공적으로 완료했습니다.');
                 history.push('/login');
             })
             .catch((error) => {
+                if (error.response.status == 409) {
+                    alert(
+                        '이미 가입되어 있는 유저입니다. 다른 닉네임을 사용해주세요.',
+                    );
+                }
                 console.error(error);
             });
     };
@@ -102,9 +107,6 @@ function Signup({ history }) {
                             {' '}
                             비밀번호가 일치하지 않습니다.
                         </i>
-                        // <div style={{ color: 'red' }}>
-                        //     비밀번호가 일치하지 않습니다.
-                        // </div>
                     )}
                 </div>
                 <button className="signup-btn" type="submit">

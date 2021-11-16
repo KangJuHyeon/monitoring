@@ -7,14 +7,24 @@ module.exports = async (req, res) => {
     if (!nickname || !password || !retrypassword) {
         return res.status(400).end();
     }
-    // 회원 가입 Validation은 나중에 만들어 주도록 하자.(일단 pass)
 
     try {
         const hashedPassword = hashPassword(password);
-        const userInfo = await user.create({
-            nickname,
-            password: hashedPassword,
+        const [userInfo, created] = await user.findOrCreate({
+            where: {
+                nickname,
+            },
+            defaults: {
+                nickname,
+                password: hashedPassword,
+            },
         });
+
+        if (!created) {
+            return res
+                .status(409)
+                .send({ message: '중복된 닉네임이 있습니다.' });
+        }
         res.status(200).send({
             userInfo,
             message: '성공적으로 회원가입이 되었습니다.',

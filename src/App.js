@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
 
 function App() {
     const loginInfo = useSelector((state) => state.userReducer);
@@ -28,6 +29,11 @@ function App() {
                                         userInfo={userInfo}
                                     />
                                 )}
+                            />
+                            <Route
+                                exact
+                                path="/settings"
+                                render={() => <Settings />}
                             />
                         </div>
                     </React.Fragment>

@@ -34,7 +34,7 @@ function Dashboard({ isLogin, history }) {
                                         ></object>
                                     </a>
                                     <input
-                                        className="form-control"
+                                        className="form-control-1"
                                         placeholder="검색..."
                                     ></input>
                                 </div>

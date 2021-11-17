@@ -45,7 +45,7 @@ function Login({ history }) {
     };
 
     return (
-        <main className="main-form">
+        <main className="main-form-login">
             <div className="form-container">
                 <div className="form-mb">
                     <form onSubmit={onSubmit}>
@@ -72,10 +72,11 @@ function Login({ history }) {
                             <div className="form-check">
                                 <input
                                     id="remember"
+                                    className="form-check-input"
                                     type="checkbox"
                                     value="remember-me"
                                 ></input>
-                                <label className="form-check-label">
+                                <label className="form-check-label-login">
                                     비밀번호 기억하기
                                 </label>
                             </div>

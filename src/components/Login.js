@@ -30,6 +30,7 @@ function Login({ history }) {
                 },
                 {
                     'Content-Type': 'application/json',
+                    withCredentials: true,
                 },
             )
             .then(function (res) {

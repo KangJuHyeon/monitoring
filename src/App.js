@@ -33,7 +33,7 @@ function App() {
                             <Route
                                 exact
                                 path="/settings"
-                                render={() => <Settings />}
+                                render={() => <Settings isLogin={isLogin} />}
                             />
                         </div>
                     </React.Fragment>

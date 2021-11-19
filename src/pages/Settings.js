@@ -1,8 +1,41 @@
 import '../scss/Settings.scss';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { setIsLogin, setUserInfo } from '../actions/index';
+import axios from 'axios';
 
-function Settings() {
+function Settings({ isLogin, history }) {
+    if (isLogin === false) {
+        alert('인증 정보가 없습니다.');
+        history.push('/login');
+    }
+    if (!localStorage.Authorization) {
+        alert('인증 정보가 없습니다.');
+        history.push('/login');
+    }
+
+    const dispatch = useDispatch();
+
+    async function logout() {
+        await axios
+            .post('http://localhost:3000/users/logout', null, {
+                headers: {
+                    Authorization: localStorage.Authorization,
+                },
+            })
+            .then(() => {
+                dispatch(setIsLogin(false));
+                dispatch(setUserInfo({}));
+                localStorage.removeItem('Authorization');
+                alert('로그아웃 되었습니다.');
+                history.push('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <main className="main-form">
             <div className="container-fluid">
@@ -379,7 +412,10 @@ function Settings() {
                                         </form>
                                         <h2 className="mt-5-mb-2">고급</h2>
                                         <div className="mb-3">
-                                            <button className="btn-btn-danger">
+                                            <button
+                                                className="btn-btn-danger"
+                                                onClick={logout}
+                                            >
                                                 로그아웃
                                             </button>
                                         </div>

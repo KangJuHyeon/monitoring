@@ -25,6 +25,7 @@ app.use(
         cookie: {
             domain: process.env.DOMAIN,
             path: '/',
+            httpOnly: true,
             // secure: true,
         },
     }),

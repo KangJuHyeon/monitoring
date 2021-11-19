@@ -32,12 +32,6 @@ module.exports = async (req, res) => {
 
         session.sessionID = userInfo.id;
 
-        res.cookie('Authorization', session.sessionID, {
-            domain: process.env.DOMAIN,
-            path: '/',
-            maxAge: 60 * 60,
-            // secure: true,
-        });
         console.log(req.cookies);
         console.log(session.sessionID);
 

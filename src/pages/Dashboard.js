@@ -7,6 +7,10 @@ function Dashboard({ isLogin, history }) {
         alert('인증 정보가 없습니다.');
         history.push('/login');
     }
+    if (!localStorage.Authorization) {
+        alert('인증 정보가 없습니다.');
+        history.push('/login');
+    }
 
     return (
         <main className="main-form">

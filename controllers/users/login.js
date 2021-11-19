@@ -38,7 +38,8 @@ module.exports = async (req, res) => {
             maxAge: 60 * 60,
             // secure: true,
         });
-        // console.log(req.cookies);
+        console.log(req.cookies);
+        console.log(session.sessionID);
 
         res.status(200).send({
             session: session.sessionID,

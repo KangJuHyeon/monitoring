@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
+import Add_monitoring from './pages/Add_monitoring';
+import NotFound from './pages/NotFound';
 
 function App() {
     const loginInfo = useSelector((state) => state.userReducer);
@@ -35,6 +37,12 @@ function App() {
                                 path="/settings"
                                 render={() => <Settings isLogin={isLogin} />}
                             />
+                            <Route
+                                exact
+                                path="/add"
+                                render={() => <Add_monitoring />}
+                            />
+                            <Route render={() => <NotFound />} />
                         </div>
                     </React.Fragment>
                 </Switch>

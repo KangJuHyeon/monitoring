@@ -1,8 +1,8 @@
-import '../scss/Add_monitoring.scss';
+import '../scss/EditMonitoring.scss';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-function Add_monitoring({ isLogin, history }) {
+function EditMonitoring({ isLogin, history }) {
     if (isLogin === false) {
         alert('인증 정보가 없습니다.');
         history.push('/login');
@@ -317,4 +317,4 @@ function Add_monitoring({ isLogin, history }) {
     );
 }
 
-export default withRouter(Add_monitoring);
+export default withRouter(EditMonitoring);

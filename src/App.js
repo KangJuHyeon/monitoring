@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Nav from './components/Nav';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
-import Add_monitoring from './pages/Add_monitoring';
+import EditMonitoring from './pages/EditMonitoring';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
                             <Route
                                 exact
                                 path="/add"
-                                render={() => <Add_monitoring />}
+                                render={() => <EditMonitoring />}
                             />
                             <Route render={() => <NotFound />} />
                         </div>
